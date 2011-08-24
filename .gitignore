@@ -1,0 +1,12 @@
+coder
+*.o
+*.am
+*.in
+Makefile
+*.a
+.deps
+config.h
+config.log
+config.status
+autom4te.cache
+stamp-h1

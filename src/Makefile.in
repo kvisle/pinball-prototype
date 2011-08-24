@@ -45,10 +45,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_coder_OBJECTS = coder-main.$(OBJEXT)
+am_coder_OBJECTS = coder-main.$(OBJEXT) coder-video.$(OBJEXT)
 coder_OBJECTS = $(am_coder_OBJECTS)
 am__DEPENDENCIES_1 =
-coder_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+coder_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 coder_LINK = $(CXXLD) $(coder_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -167,19 +168,20 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -Wall 
-coder_SOURCES = main.cpp 
+coder_SOURCES = main.cpp video.cpp
 coder_LDADD = -L../lib/lib_json -ljsoncpp \
               -L../lib/Box2D -lbox2d \
 			 $(OPENAL_LIBS) \
-			 $(GL_LIBS)
+			 $(GL_LIBS) \
+             $(SDL_LIBS)
 
-#             $(SDL_LIBS)
-EXTRA_DIST = 
+EXTRA_DIST = video.h
 coder_CXXFLAGS = -Wall -Wextra -g \
 				-I../include \
                 -I../lib/ \
 				$(OPENAL_CFLAGS) \
-				$(GL_CFLAGS) 
+				$(GL_CFLAGS) \
+				$(SDL_CFLAGS) 
 
 all: all-am
 
@@ -263,6 +265,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-video.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -291,6 +294,20 @@ coder-main.obj: main.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='coder-main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+
+coder-video.o: video.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-video.o -MD -MP -MF $(DEPDIR)/coder-video.Tpo -c -o coder-video.o `test -f 'video.cpp' || echo '$(srcdir)/'`video.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-video.Tpo $(DEPDIR)/coder-video.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='video.cpp' object='coder-video.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-video.o `test -f 'video.cpp' || echo '$(srcdir)/'`video.cpp
+
+coder-video.obj: video.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-video.obj -MD -MP -MF $(DEPDIR)/coder-video.Tpo -c -o coder-video.obj `if test -f 'video.cpp'; then $(CYGPATH_W) 'video.cpp'; else $(CYGPATH_W) '$(srcdir)/video.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-video.Tpo $(DEPDIR)/coder-video.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='video.cpp' object='coder-video.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-video.obj `if test -f 'video.cpp'; then $(CYGPATH_W) 'video.cpp'; else $(CYGPATH_W) '$(srcdir)/video.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -490,7 +507,6 @@ uninstall-am: uninstall-binPROGRAMS
 	mostlyclean-generic pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-binPROGRAMS
 
-# $(SDL_CFLAGS) -I../include
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
