@@ -45,7 +45,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_coder_OBJECTS = coder-main.$(OBJEXT) coder-video.$(OBJEXT)
+am_coder_OBJECTS = coder-main.$(OBJEXT) coder-video.$(OBJEXT) \
+	coder-timer.$(OBJEXT) coder-game.$(OBJEXT)
 coder_OBJECTS = $(am_coder_OBJECTS)
 am__DEPENDENCIES_1 =
 coder_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -168,14 +169,14 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -Wall 
-coder_SOURCES = main.cpp video.cpp
+coder_SOURCES = main.cpp video.cpp timer.cpp game.cpp
 coder_LDADD = -L../lib/lib_json -ljsoncpp \
               -L../lib/Box2D -lbox2d \
 			 $(OPENAL_LIBS) \
 			 $(GL_LIBS) \
              $(SDL_LIBS)
 
-EXTRA_DIST = video.h
+EXTRA_DIST = video.h timer.h game.h
 coder_CXXFLAGS = -Wall -Wextra -g \
 				-I../include \
                 -I../lib/ \
@@ -264,7 +265,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-game.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-timer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-video.Po@am__quote@
 
 .cpp.o:
@@ -308,6 +311,34 @@ coder-video.obj: video.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='video.cpp' object='coder-video.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-video.obj `if test -f 'video.cpp'; then $(CYGPATH_W) 'video.cpp'; else $(CYGPATH_W) '$(srcdir)/video.cpp'; fi`
+
+coder-timer.o: timer.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-timer.o -MD -MP -MF $(DEPDIR)/coder-timer.Tpo -c -o coder-timer.o `test -f 'timer.cpp' || echo '$(srcdir)/'`timer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-timer.Tpo $(DEPDIR)/coder-timer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='timer.cpp' object='coder-timer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-timer.o `test -f 'timer.cpp' || echo '$(srcdir)/'`timer.cpp
+
+coder-timer.obj: timer.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-timer.obj -MD -MP -MF $(DEPDIR)/coder-timer.Tpo -c -o coder-timer.obj `if test -f 'timer.cpp'; then $(CYGPATH_W) 'timer.cpp'; else $(CYGPATH_W) '$(srcdir)/timer.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-timer.Tpo $(DEPDIR)/coder-timer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='timer.cpp' object='coder-timer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-timer.obj `if test -f 'timer.cpp'; then $(CYGPATH_W) 'timer.cpp'; else $(CYGPATH_W) '$(srcdir)/timer.cpp'; fi`
+
+coder-game.o: game.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-game.o -MD -MP -MF $(DEPDIR)/coder-game.Tpo -c -o coder-game.o `test -f 'game.cpp' || echo '$(srcdir)/'`game.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-game.Tpo $(DEPDIR)/coder-game.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='game.cpp' object='coder-game.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-game.o `test -f 'game.cpp' || echo '$(srcdir)/'`game.cpp
+
+coder-game.obj: game.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-game.obj -MD -MP -MF $(DEPDIR)/coder-game.Tpo -c -o coder-game.obj `if test -f 'game.cpp'; then $(CYGPATH_W) 'game.cpp'; else $(CYGPATH_W) '$(srcdir)/game.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-game.Tpo $(DEPDIR)/coder-game.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='game.cpp' object='coder-game.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-game.obj `if test -f 'game.cpp'; then $(CYGPATH_W) 'game.cpp'; else $(CYGPATH_W) '$(srcdir)/game.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

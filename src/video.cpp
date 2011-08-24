@@ -9,3 +9,8 @@ video::~video(void)
 {
 	SDL_Quit();
 }
+
+void video::draw(void)
+{
+
+}

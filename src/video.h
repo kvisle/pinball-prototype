@@ -11,6 +11,9 @@ class video
 	public:
 		video(int w, int h);
 		~video(void);
+
+		void draw(void);
+
 };
 
 #endif /* __VIDEO_H__ */
