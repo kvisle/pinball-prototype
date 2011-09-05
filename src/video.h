@@ -5,14 +5,14 @@
 
 class video
 {
-	private:
-		SDL_Surface *screen;
+    private:
+        SDL_Surface *screen;
 
-	public:
-		video(int w, int h);
-		~video(void);
+    public:
+        video(int w, int h);
+        ~video(void);
 
-		void draw(void);
+        void draw(void);
 
 };
 

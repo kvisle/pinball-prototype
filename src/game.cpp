@@ -4,27 +4,27 @@
 
 game::game(void)
 {
-	quit = 0;
+    quit = 0;
 }
 
 void game::input(void)
 {
-	SDL_Event e;
-	while(SDL_PollEvent(&e))
-	{
-		switch(e.type)
-		{
-		case SDL_QUIT:
-			quit++;
-			break;
-		}
-	}
+    SDL_Event e;
+    while(SDL_PollEvent(&e))
+    {
+        switch(e.type)
+        {
+        case SDL_QUIT:
+            quit++;
+            break;
+        }
+    }
 }
 
 
 int game::update(void)
 {
-	input();
+    input();
 
-	return !quit;
+    return !quit;
 }

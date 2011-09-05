@@ -3,13 +3,13 @@
 
 class game
 {
-	private:
-		void input(void);
-		int quit;
+    private:
+        void input(void);
+        int quit;
 
-	public:
-		game(void);
-		int update(void);
+    public:
+        game(void);
+        int update(void);
 
 };
 

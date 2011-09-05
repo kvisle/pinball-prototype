@@ -3,13 +3,13 @@
 
 class timer
 {
-	private:
-		int fps;
-		int time;
+    private:
+        int fps;
+        int time;
 
-	public:
-		timer(int f);
-		void sync(void);
+    public:
+        timer(int f);
+        void sync(void);
 };
 
 #endif /* __TIMER_H__ */
