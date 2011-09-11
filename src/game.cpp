@@ -2,9 +2,32 @@
 
 #include "game.h"
 
-game::game(void)
+game::game(const char *s)
 {
     quit = 0;
+    b = new box(s);
+}
+
+game::~game(void)
+{
+    delete(b);
+}
+
+void game::key(SDL_Event k)
+{
+    int down = ( k.key.state == SDL_PRESSED ) ? true : false;
+    int flipper;
+    switch(k.key.keysym.sym)
+    {
+    case SDLK_LSHIFT:
+        b->flip(0, down);
+        break;
+    case SDLK_RSHIFT:
+        b->flip(1, down);
+        break;
+    default:
+        break;
+    }
 }
 
 void game::input(void)
@@ -17,6 +40,10 @@ void game::input(void)
         case SDL_QUIT:
             quit++;
             break;
+        case SDL_KEYDOWN:
+        case SDL_KEYUP:
+            key(e);
+            break;
         }
     }
 }
@@ -25,6 +52,7 @@ void game::input(void)
 int game::update(void)
 {
     input();
+    b->step();
 
     return !quit;
 }

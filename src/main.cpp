@@ -8,13 +8,13 @@
 
 int main(int argc, char *argv[])
 {
-    video v(1024, 768);
+    video v(600, 900);
     timer t(60);
-    game g;
+    game g("pinball.json");
 
     while(g.update())
     {
-        v.draw();
+        v.draw(&g);
         t.sync();
     }
 

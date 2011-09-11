@@ -46,7 +46,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_coder_OBJECTS = coder-main.$(OBJEXT) coder-video.$(OBJEXT) \
-	coder-timer.$(OBJEXT) coder-game.$(OBJEXT)
+	coder-timer.$(OBJEXT) coder-game.$(OBJEXT) coder-box.$(OBJEXT) \
+	coder-Render.$(OBJEXT) coder-b2dJson.$(OBJEXT)
 coder_OBJECTS = $(am_coder_OBJECTS)
 am__DEPENDENCIES_1 =
 coder_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -169,7 +170,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -Wall 
-coder_SOURCES = main.cpp video.cpp timer.cpp game.cpp
+coder_SOURCES = main.cpp video.cpp timer.cpp game.cpp box.cpp Render.cpp b2dJson.cpp
 coder_LDADD = -L../lib/lib_json -ljsoncpp \
               -L../lib/Box2D -lbox2d \
 			 $(OPENAL_LIBS) \
@@ -265,6 +266,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-Render.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-b2dJson.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-box.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-game.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-timer.Po@am__quote@
@@ -339,6 +343,48 @@ coder-game.obj: game.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='game.cpp' object='coder-game.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-game.obj `if test -f 'game.cpp'; then $(CYGPATH_W) 'game.cpp'; else $(CYGPATH_W) '$(srcdir)/game.cpp'; fi`
+
+coder-box.o: box.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-box.o -MD -MP -MF $(DEPDIR)/coder-box.Tpo -c -o coder-box.o `test -f 'box.cpp' || echo '$(srcdir)/'`box.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-box.Tpo $(DEPDIR)/coder-box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='box.cpp' object='coder-box.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-box.o `test -f 'box.cpp' || echo '$(srcdir)/'`box.cpp
+
+coder-box.obj: box.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-box.obj -MD -MP -MF $(DEPDIR)/coder-box.Tpo -c -o coder-box.obj `if test -f 'box.cpp'; then $(CYGPATH_W) 'box.cpp'; else $(CYGPATH_W) '$(srcdir)/box.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-box.Tpo $(DEPDIR)/coder-box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='box.cpp' object='coder-box.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-box.obj `if test -f 'box.cpp'; then $(CYGPATH_W) 'box.cpp'; else $(CYGPATH_W) '$(srcdir)/box.cpp'; fi`
+
+coder-Render.o: Render.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-Render.o -MD -MP -MF $(DEPDIR)/coder-Render.Tpo -c -o coder-Render.o `test -f 'Render.cpp' || echo '$(srcdir)/'`Render.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-Render.Tpo $(DEPDIR)/coder-Render.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Render.cpp' object='coder-Render.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-Render.o `test -f 'Render.cpp' || echo '$(srcdir)/'`Render.cpp
+
+coder-Render.obj: Render.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-Render.obj -MD -MP -MF $(DEPDIR)/coder-Render.Tpo -c -o coder-Render.obj `if test -f 'Render.cpp'; then $(CYGPATH_W) 'Render.cpp'; else $(CYGPATH_W) '$(srcdir)/Render.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-Render.Tpo $(DEPDIR)/coder-Render.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Render.cpp' object='coder-Render.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-Render.obj `if test -f 'Render.cpp'; then $(CYGPATH_W) 'Render.cpp'; else $(CYGPATH_W) '$(srcdir)/Render.cpp'; fi`
+
+coder-b2dJson.o: b2dJson.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-b2dJson.o -MD -MP -MF $(DEPDIR)/coder-b2dJson.Tpo -c -o coder-b2dJson.o `test -f 'b2dJson.cpp' || echo '$(srcdir)/'`b2dJson.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-b2dJson.Tpo $(DEPDIR)/coder-b2dJson.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='b2dJson.cpp' object='coder-b2dJson.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-b2dJson.o `test -f 'b2dJson.cpp' || echo '$(srcdir)/'`b2dJson.cpp
+
+coder-b2dJson.obj: b2dJson.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-b2dJson.obj -MD -MP -MF $(DEPDIR)/coder-b2dJson.Tpo -c -o coder-b2dJson.obj `if test -f 'b2dJson.cpp'; then $(CYGPATH_W) 'b2dJson.cpp'; else $(CYGPATH_W) '$(srcdir)/b2dJson.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-b2dJson.Tpo $(DEPDIR)/coder-b2dJson.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='b2dJson.cpp' object='coder-b2dJson.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-b2dJson.obj `if test -f 'b2dJson.cpp'; then $(CYGPATH_W) 'b2dJson.cpp'; else $(CYGPATH_W) '$(srcdir)/b2dJson.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

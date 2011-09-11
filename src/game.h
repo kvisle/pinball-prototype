@@ -1,14 +1,22 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
+#include <SDL.h>
+
+#include "box.h"
+
 class game
 {
     private:
         void input(void);
         int quit;
 
+        void key(SDL_Event k);
+
     public:
-        game(void);
+        box *b;
+        game(const char *s);
+        ~game(void);
         int update(void);
 
 };

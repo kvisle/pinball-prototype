@@ -3,6 +3,8 @@
 
 #include <SDL.h>
 
+#include "game.h"
+
 class video
 {
     private:
@@ -12,7 +14,7 @@ class video
         video(int w, int h);
         ~video(void);
 
-        void draw(void);
+        void draw(game *g);
 
 };
 
