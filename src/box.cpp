@@ -41,12 +41,18 @@ box::box(const char *s)
     dbd.SetFlags(b2Draw::e_shapeBit);
     timeStep = 1.0f/60.f;
     velocityIterations = 8;
-    positionIterations = 3;
+    positionIterations = 10;
 
     vector<b2Joint*> f;
     json.getJointsByName("flip_left", f);
     leftFlipper = (b2RevoluteJoint*)f[0];
-    flipOff(leftFlipper);
+    leftFlipper->SetMotorSpeed(-10);
+
+    f.clear();
+    json.getJointsByName("flip_right", f);
+    rightFlipper = (b2RevoluteJoint*)f[0];
+    rightFlipper->SetMotorSpeed(10);
+
 }
 
 void box::flipOff(b2RevoluteJoint *f)
@@ -64,8 +70,12 @@ void box::flip(int id, int on)
     switch(id)
     {
     case 0:
-        if ( on ) flipOn(leftFlipper);
-        else flipOff(leftFlipper);
+        if ( on ) leftFlipper->SetMotorSpeed(20);
+        else leftFlipper->SetMotorSpeed(-10);
+        break;
+    case 1:
+        if ( on ) rightFlipper->SetMotorSpeed(-20);
+        else rightFlipper->SetMotorSpeed(10);
         break;
     }
 }

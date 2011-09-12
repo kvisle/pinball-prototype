@@ -14,6 +14,7 @@ class box {
         int32 positionIterations;
 
         b2RevoluteJoint *leftFlipper;
+        b2RevoluteJoint *rightFlipper;
 
         void flipOn(b2RevoluteJoint *f);
         void flipOff(b2RevoluteJoint *f);
