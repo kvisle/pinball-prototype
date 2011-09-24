@@ -61,7 +61,7 @@ Json::Value b2dJson::b2j(b2World* world)
     Json::Value worldValue;
 
     vecToJson("gravity", world->GetGravity(), worldValue);
-    worldValue["allowSleep"] = world->GetAllowSleep();
+    worldValue["allowSleep"] = world->GetAllowSleeping();
     worldValue["autoClearForces"] = world->GetAutoClearForces();
     worldValue["warmStarting"] = world->GetWarmStarting();
     worldValue["continuousPhysics"] = world->GetContinuousPhysics();
@@ -209,13 +209,32 @@ Json::Value b2dJson::b2j(b2Fixture *fixture)
                 vecToJson("vertex3", edge->m_vertex3, fixtureValue["edge"]);
         }
         break;
+    /* r197
     case b2Shape::e_loop:
         {
             b2LoopShape* loop = (b2LoopShape*)shape;
             int32 count = loop->GetCount();
             const b2Vec2* vertices = loop->GetVertices();
             for (int32 i = 0; i < count; ++i)
-                vecToJson("vertices", vertices[i], fixtureValue["loop"], i);
+                vecToJson("vertices", vertices[i], fixtureValue["loop"], i);            
+        }
+        break;
+    */
+    case b2Shape::e_chain:
+        {
+            b2ChainShape* chain = (b2ChainShape*)shape;
+            int32 count = chain->m_count;
+            const b2Vec2* vertices = chain->m_vertices;
+            for (int32 i = 0; i < count; ++i)
+                vecToJson("vertices", vertices[i], fixtureValue["chain"], i);
+            if ( chain->m_hasPrevVertex )
+                fixtureValue["chain"]["hasPrevVertex"] = true;
+            if ( chain->m_hasNextVertex )
+                fixtureValue["chain"]["hasNextVertex"] = true;
+            if ( chain->m_hasPrevVertex )
+                vecToJson("prevVertex", chain->m_prevVertex, fixtureValue["chain"]);
+            if ( chain->m_hasNextVertex )
+                vecToJson("nextVertex", chain->m_nextVertex, fixtureValue["chain"]);
         }
         break;
     case b2Shape::e_polygon:
@@ -509,7 +528,8 @@ b2World* b2dJson::j2b2World(Json::Value worldValue)
 {
     m_bodies.clear();
 
-    b2World* world = new b2World( jsonToVec("gravity", worldValue), worldValue["allowSleep"].asBool() );
+    b2World* world = new b2World( jsonToVec("gravity", worldValue) );
+    world->SetAllowSleeping( worldValue["allowSleep"].asBool() );
 
     world->SetAutoClearForces( worldValue["autoClearForces"].asBool() );
     world->SetWarmStarting( worldValue["warmStarting"].asBool() );
@@ -643,14 +663,31 @@ b2Fixture* b2dJson::j2b2Fixture(b2Body* body, Json::Value fixtureValue)
         fixtureDef.shape = &edgeShape;
         fixture = body->CreateFixture(&fixtureDef);
     }
-    else if ( !fixtureValue["loop"].isNull() ) {
-        b2LoopShape loopShape;
+    else if ( !fixtureValue["loop"].isNull() ) { //support old format (r197)
+        b2ChainShape chainShape;
         int numVertices = fixtureValue["loop"]["vertices"]["x"].size();
         b2Vec2* vertices = new b2Vec2[numVertices];
         for (int i = 0; i < numVertices; i++)
             vertices[i] = jsonToVec("vertices", fixtureValue["loop"], i);
-        loopShape.Create(vertices, numVertices);
-        fixtureDef.shape = &loopShape;
+        chainShape.CreateLoop(vertices, numVertices);
+        fixtureDef.shape = &chainShape;
+        fixture = body->CreateFixture(&fixtureDef);
+        delete vertices;
+    }
+    else if ( !fixtureValue["chain"].isNull() ) {
+        b2ChainShape chainShape;
+        int numVertices = fixtureValue["chain"]["vertices"]["x"].size();
+        b2Vec2* vertices = new b2Vec2[numVertices];
+        for (int i = 0; i < numVertices; i++)
+            vertices[i] = jsonToVec("vertices", fixtureValue["chain"], i);
+        chainShape.CreateChain(vertices, numVertices);
+        chainShape.m_hasPrevVertex = fixtureValue["chain"].get("hasPrevVertex",false).asBool();
+        chainShape.m_hasNextVertex = fixtureValue["chain"].get("hasNextVertex",false).asBool();
+        if ( chainShape.m_hasPrevVertex )
+            chainShape.m_prevVertex = jsonToVec("prevVertex", fixtureValue["chain"]);
+        if ( chainShape.m_hasNextVertex )
+            chainShape.m_nextVertex = jsonToVec("nextVertex", fixtureValue["chain"]);
+        fixtureDef.shape = &chainShape;
         fixture = body->CreateFixture(&fixtureDef);
         delete vertices;
     }
@@ -717,7 +754,11 @@ b2Joint* b2dJson::j2b2Joint(b2World* world, Json::Value jointValue)
         jointDef = &prismaticDef;
         prismaticDef.localAnchorA = jsonToVec("anchorA", jointValue);
         prismaticDef.localAnchorB = jsonToVec("anchorB", jointValue);
-        prismaticDef.localAxisA = jsonToVec("localAxisA", jointValue);
+//        prismaticDef.localAxisA = jsonToVec("localAxisA", jointValue);
+        if ( !jointValue["localAxisA"].isNull() )
+            prismaticDef.localAxisA = jsonToVec("localAxisA", jointValue);
+        else
+            prismaticDef.localAxisA = jsonToVec("localAxis1", jointValue);
         prismaticDef.referenceAngle = jsonToFloat("refAngle", jointValue);
         prismaticDef.enableLimit = jointValue["enableLimit"].asBool();
         prismaticDef.lowerTranslation = jsonToFloat("lowerLimit", jointValue);
@@ -1000,3 +1041,43 @@ int b2dJson::getJointsByName(string name, vector<b2Joint*>& joints)
     }
     return joints.size();
 }
+
+
+b2Body* b2dJson::getBodyByName(string name)
+{
+    map<b2Body*,string>::iterator it = m_bodyToNameMap.begin();
+    map<b2Body*,string>::iterator end = m_bodyToNameMap.end();
+    while (it != end) {
+        if ( it->second == name )
+            return it->first;
+        ++it;
+    }
+    return NULL;
+}
+
+b2Fixture* b2dJson::getFixtureByName(string name)
+{
+    map<b2Fixture*,string>::iterator it = m_fixtureToNameMap.begin();
+    map<b2Fixture*,string>::iterator end = m_fixtureToNameMap.end();
+    while (it != end) {
+        if ( it->second == name )
+            return it->first;
+        ++it;
+    }
+    return NULL;
+}
+
+b2Joint* b2dJson::getJointByName(string name)
+{
+    map<b2Joint*,string>::iterator it = m_jointToNameMap.begin();
+    map<b2Joint*,string>::iterator end = m_jointToNameMap.end();
+    while (it != end) {
+        if ( it->second == name )
+            return it->first;
+        ++it;
+    }
+    return NULL;
+}
+
+
+

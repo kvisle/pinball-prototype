@@ -291,7 +291,7 @@ public:
 	/// Get the gravity scale of the body.
 	float32 GetGravityScale() const;
 
-	/// Set the angular damping of the body.
+	/// Set the gravity scale of the body.
 	void SetGravityScale(float32 scale);
 
 	/// Set the type of this body. This may alter the mass and velocity.
@@ -374,6 +374,9 @@ public:
 	/// Get the parent world of this body.
 	b2World* GetWorld();
 	const b2World* GetWorld() const;
+
+	/// Dump this body to a log file
+	void Dump();
 
 private:
 
@@ -474,7 +477,7 @@ inline const b2Vec2& b2Body::GetPosition() const
 
 inline float32 b2Body::GetAngle() const
 {
-	return m_xf.q.GetAngle();
+	return m_sweep.a;
 }
 
 inline const b2Vec2& b2Body::GetWorldCenter() const

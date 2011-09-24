@@ -76,8 +76,8 @@ am_libbox2d_a_OBJECTS = libbox2d_a-b2Rope.$(OBJEXT) \
 	libbox2d_a-b2BroadPhase.$(OBJEXT) \
 	libbox2d_a-b2DynamicTree.$(OBJEXT) \
 	libbox2d_a-b2TimeOfImpact.$(OBJEXT) \
+	libbox2d_a-b2ChainShape.$(OBJEXT) \
 	libbox2d_a-b2EdgeShape.$(OBJEXT) \
-	libbox2d_a-b2LoopShape.$(OBJEXT) \
 	libbox2d_a-b2CircleShape.$(OBJEXT) \
 	libbox2d_a-b2PolygonShape.$(OBJEXT) \
 	libbox2d_a-b2CollidePolygon.$(OBJEXT) \
@@ -86,13 +86,13 @@ am_libbox2d_a_OBJECTS = libbox2d_a-b2Rope.$(OBJEXT) \
 	libbox2d_a-b2Draw.$(OBJEXT) \
 	libbox2d_a-b2StackAllocator.$(OBJEXT) \
 	libbox2d_a-b2Settings.$(OBJEXT) libbox2d_a-b2Math.$(OBJEXT) \
-	libbox2d_a-b2LoopAndCircleContact.$(OBJEXT) \
 	libbox2d_a-b2ContactSolver.$(OBJEXT) \
-	libbox2d_a-b2LoopAndPolygonContact.$(OBJEXT) \
 	libbox2d_a-b2PolygonContact.$(OBJEXT) \
 	libbox2d_a-b2CircleContact.$(OBJEXT) \
 	libbox2d_a-b2Contact.$(OBJEXT) \
+	libbox2d_a-b2ChainAndPolygonContact.$(OBJEXT) \
 	libbox2d_a-b2PolygonAndCircleContact.$(OBJEXT) \
+	libbox2d_a-b2ChainAndCircleContact.$(OBJEXT) \
 	libbox2d_a-b2EdgeAndCircleContact.$(OBJEXT) \
 	libbox2d_a-b2EdgeAndPolygonContact.$(OBJEXT) \
 	libbox2d_a-b2Island.$(OBJEXT) \
@@ -231,21 +231,21 @@ lib_LIBRARIES = libbox2d.a
 libbox2d_a_SOURCES = Rope/b2Rope.cpp Collision/b2Distance.cpp \
 	Collision/b2CollideCircle.cpp Collision/b2CollideEdge.cpp \
 	Collision/b2BroadPhase.cpp Collision/b2DynamicTree.cpp \
-	Collision/b2TimeOfImpact.cpp Collision/Shapes/b2EdgeShape.cpp \
-	Collision/Shapes/b2LoopShape.cpp \
+	Collision/b2TimeOfImpact.cpp Collision/Shapes/b2ChainShape.cpp \
+	Collision/Shapes/b2EdgeShape.cpp \
 	Collision/Shapes/b2CircleShape.cpp \
 	Collision/Shapes/b2PolygonShape.cpp \
 	Collision/b2CollidePolygon.cpp Collision/b2Collision.cpp \
 	Common/b2Timer.cpp Common/b2BlockAllocator.cpp \
 	Common/b2Draw.cpp Common/b2StackAllocator.cpp \
 	Common/b2Settings.cpp Common/b2Math.cpp \
-	Dynamics/Contacts/b2LoopAndCircleContact.cpp \
 	Dynamics/Contacts/b2ContactSolver.cpp \
-	Dynamics/Contacts/b2LoopAndPolygonContact.cpp \
 	Dynamics/Contacts/b2PolygonContact.cpp \
 	Dynamics/Contacts/b2CircleContact.cpp \
 	Dynamics/Contacts/b2Contact.cpp \
+	Dynamics/Contacts/b2ChainAndPolygonContact.cpp \
 	Dynamics/Contacts/b2PolygonAndCircleContact.cpp \
+	Dynamics/Contacts/b2ChainAndCircleContact.cpp \
 	Dynamics/Contacts/b2EdgeAndCircleContact.cpp \
 	Dynamics/Contacts/b2EdgeAndPolygonContact.cpp \
 	Dynamics/b2Island.cpp Dynamics/b2WorldCallbacks.cpp \
@@ -261,6 +261,8 @@ libbox2d_a_SOURCES = Rope/b2Rope.cpp Collision/b2Distance.cpp \
 	Dynamics/Joints/b2PrismaticJoint.cpp \
 	Dynamics/Joints/b2MouseJoint.cpp \
 	Dynamics/Joints/b2WeldJoint.cpp
+
+#libbox2d_a_SOURCES = Rope/b2Rope.cpp Collision/b2Distance.cpp Collision/b2CollideCircle.cpp Collision/b2CollideEdge.cpp Collision/b2BroadPhase.cpp Collision/b2DynamicTree.cpp Collision/b2TimeOfImpact.cpp Collision/Shapes/b2EdgeShape.cpp Collision/Shapes/b2LoopShape.cpp Collision/Shapes/b2CircleShape.cpp Collision/Shapes/b2PolygonShape.cpp Collision/b2CollidePolygon.cpp Collision/b2Collision.cpp Common/b2Timer.cpp Common/b2BlockAllocator.cpp Common/b2Draw.cpp Common/b2StackAllocator.cpp Common/b2Settings.cpp Common/b2Math.cpp Dynamics/Contacts/b2LoopAndCircleContact.cpp Dynamics/Contacts/b2ContactSolver.cpp Dynamics/Contacts/b2LoopAndPolygonContact.cpp Dynamics/Contacts/b2PolygonContact.cpp Dynamics/Contacts/b2CircleContact.cpp Dynamics/Contacts/b2Contact.cpp Dynamics/Contacts/b2PolygonAndCircleContact.cpp Dynamics/Contacts/b2EdgeAndCircleContact.cpp Dynamics/Contacts/b2EdgeAndPolygonContact.cpp Dynamics/b2Island.cpp Dynamics/b2WorldCallbacks.cpp Dynamics/b2Fixture.cpp Dynamics/b2Body.cpp Dynamics/b2World.cpp Dynamics/b2ContactManager.cpp Dynamics/Joints/b2RevoluteJoint.cpp Dynamics/Joints/b2WheelJoint.cpp Dynamics/Joints/b2Joint.cpp Dynamics/Joints/b2GearJoint.cpp Dynamics/Joints/b2RopeJoint.cpp Dynamics/Joints/b2DistanceJoint.cpp Dynamics/Joints/b2FrictionJoint.cpp Dynamics/Joints/b2PulleyJoint.cpp Dynamics/Joints/b2PrismaticJoint.cpp Dynamics/Joints/b2MouseJoint.cpp Dynamics/Joints/b2WeldJoint.cpp
 
 #libbox2d_a_SOURCES = Rope/b2Rope.cpp Collision/b2Distance.cpp Collision/b2CollideCircle.cpp Collision/b2CollideEdge.cpp Collision/b2BroadPhase.cpp Collision/b2DynamicTree.cpp Collision/b2TimeOfImpact.cpp Collision/Shapes/b2ChainShape.cpp Collision/Shapes/b2EdgeShape.cpp Collision/Shapes/b2CircleShape.cpp Collision/Shapes/b2PolygonShape.cpp Collision/b2CollidePolygon.cpp Collision/b2Collision.cpp Common/b2Timer.cpp Common/b2BlockAllocator.cpp Common/b2Draw.cpp Common/b2StackAllocator.cpp Common/b2Settings.cpp Common/b2Math.cpp Dynamics/Contacts/b2ContactSolver.cpp Dynamics/Contacts/b2PolygonContact.cpp Dynamics/Contacts/b2CircleContact.cpp Dynamics/Contacts/b2Contact.cpp Dynamics/Contacts/b2ChainAndPolygonContact.cpp Dynamics/Contacts/b2PolygonAndCircleContact.cpp Dynamics/Contacts/b2ChainAndCircleContact.cpp Dynamics/Contacts/b2EdgeAndCircleContact.cpp Dynamics/Contacts/b2EdgeAndPolygonContact.cpp Dynamics/b2Island.cpp Dynamics/b2WorldCallbacks.cpp Dynamics/b2Fixture.cpp Dynamics/b2Body.cpp Dynamics/b2World.cpp Dynamics/b2ContactManager.cpp Dynamics/Joints/b2RevoluteJoint.cpp Dynamics/Joints/b2WheelJoint.cpp Dynamics/Joints/b2Joint.cpp Dynamics/Joints/b2GearJoint.cpp Dynamics/Joints/b2RopeJoint.cpp Dynamics/Joints/b2DistanceJoint.cpp Dynamics/Joints/b2FrictionJoint.cpp Dynamics/Joints/b2PulleyJoint.cpp Dynamics/Joints/b2PrismaticJoint.cpp Dynamics/Joints/b2MouseJoint.cpp Dynamics/Joints/b2WeldJoint.cpp
 libbox2d_a_LIBADD = 
@@ -346,6 +348,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2BlockAllocator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2Body.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2BroadPhase.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2ChainAndCircleContact.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2ChainAndPolygonContact.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2ChainShape.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2CircleContact.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2CircleShape.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2CollideCircle.Po@am__quote@
@@ -367,9 +372,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2GearJoint.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2Island.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2Joint.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2LoopAndCircleContact.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2LoopAndPolygonContact.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2LoopShape.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2Math.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2MouseJoint.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbox2d_a-b2PolygonAndCircleContact.Po@am__quote@
@@ -501,6 +503,20 @@ libbox2d_a-b2TimeOfImpact.obj: Collision/b2TimeOfImpact.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2TimeOfImpact.obj `if test -f 'Collision/b2TimeOfImpact.cpp'; then $(CYGPATH_W) 'Collision/b2TimeOfImpact.cpp'; else $(CYGPATH_W) '$(srcdir)/Collision/b2TimeOfImpact.cpp'; fi`
 
+libbox2d_a-b2ChainShape.o: Collision/Shapes/b2ChainShape.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2ChainShape.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2ChainShape.Tpo -c -o libbox2d_a-b2ChainShape.o `test -f 'Collision/Shapes/b2ChainShape.cpp' || echo '$(srcdir)/'`Collision/Shapes/b2ChainShape.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2ChainShape.Tpo $(DEPDIR)/libbox2d_a-b2ChainShape.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Collision/Shapes/b2ChainShape.cpp' object='libbox2d_a-b2ChainShape.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2ChainShape.o `test -f 'Collision/Shapes/b2ChainShape.cpp' || echo '$(srcdir)/'`Collision/Shapes/b2ChainShape.cpp
+
+libbox2d_a-b2ChainShape.obj: Collision/Shapes/b2ChainShape.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2ChainShape.obj -MD -MP -MF $(DEPDIR)/libbox2d_a-b2ChainShape.Tpo -c -o libbox2d_a-b2ChainShape.obj `if test -f 'Collision/Shapes/b2ChainShape.cpp'; then $(CYGPATH_W) 'Collision/Shapes/b2ChainShape.cpp'; else $(CYGPATH_W) '$(srcdir)/Collision/Shapes/b2ChainShape.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2ChainShape.Tpo $(DEPDIR)/libbox2d_a-b2ChainShape.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Collision/Shapes/b2ChainShape.cpp' object='libbox2d_a-b2ChainShape.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2ChainShape.obj `if test -f 'Collision/Shapes/b2ChainShape.cpp'; then $(CYGPATH_W) 'Collision/Shapes/b2ChainShape.cpp'; else $(CYGPATH_W) '$(srcdir)/Collision/Shapes/b2ChainShape.cpp'; fi`
+
 libbox2d_a-b2EdgeShape.o: Collision/Shapes/b2EdgeShape.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2EdgeShape.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2EdgeShape.Tpo -c -o libbox2d_a-b2EdgeShape.o `test -f 'Collision/Shapes/b2EdgeShape.cpp' || echo '$(srcdir)/'`Collision/Shapes/b2EdgeShape.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2EdgeShape.Tpo $(DEPDIR)/libbox2d_a-b2EdgeShape.Po
@@ -514,20 +530,6 @@ libbox2d_a-b2EdgeShape.obj: Collision/Shapes/b2EdgeShape.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Collision/Shapes/b2EdgeShape.cpp' object='libbox2d_a-b2EdgeShape.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2EdgeShape.obj `if test -f 'Collision/Shapes/b2EdgeShape.cpp'; then $(CYGPATH_W) 'Collision/Shapes/b2EdgeShape.cpp'; else $(CYGPATH_W) '$(srcdir)/Collision/Shapes/b2EdgeShape.cpp'; fi`
-
-libbox2d_a-b2LoopShape.o: Collision/Shapes/b2LoopShape.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2LoopShape.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2LoopShape.Tpo -c -o libbox2d_a-b2LoopShape.o `test -f 'Collision/Shapes/b2LoopShape.cpp' || echo '$(srcdir)/'`Collision/Shapes/b2LoopShape.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2LoopShape.Tpo $(DEPDIR)/libbox2d_a-b2LoopShape.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Collision/Shapes/b2LoopShape.cpp' object='libbox2d_a-b2LoopShape.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2LoopShape.o `test -f 'Collision/Shapes/b2LoopShape.cpp' || echo '$(srcdir)/'`Collision/Shapes/b2LoopShape.cpp
-
-libbox2d_a-b2LoopShape.obj: Collision/Shapes/b2LoopShape.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2LoopShape.obj -MD -MP -MF $(DEPDIR)/libbox2d_a-b2LoopShape.Tpo -c -o libbox2d_a-b2LoopShape.obj `if test -f 'Collision/Shapes/b2LoopShape.cpp'; then $(CYGPATH_W) 'Collision/Shapes/b2LoopShape.cpp'; else $(CYGPATH_W) '$(srcdir)/Collision/Shapes/b2LoopShape.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2LoopShape.Tpo $(DEPDIR)/libbox2d_a-b2LoopShape.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Collision/Shapes/b2LoopShape.cpp' object='libbox2d_a-b2LoopShape.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2LoopShape.obj `if test -f 'Collision/Shapes/b2LoopShape.cpp'; then $(CYGPATH_W) 'Collision/Shapes/b2LoopShape.cpp'; else $(CYGPATH_W) '$(srcdir)/Collision/Shapes/b2LoopShape.cpp'; fi`
 
 libbox2d_a-b2CircleShape.o: Collision/Shapes/b2CircleShape.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2CircleShape.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2CircleShape.Tpo -c -o libbox2d_a-b2CircleShape.o `test -f 'Collision/Shapes/b2CircleShape.cpp' || echo '$(srcdir)/'`Collision/Shapes/b2CircleShape.cpp
@@ -669,20 +671,6 @@ libbox2d_a-b2Math.obj: Common/b2Math.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2Math.obj `if test -f 'Common/b2Math.cpp'; then $(CYGPATH_W) 'Common/b2Math.cpp'; else $(CYGPATH_W) '$(srcdir)/Common/b2Math.cpp'; fi`
 
-libbox2d_a-b2LoopAndCircleContact.o: Dynamics/Contacts/b2LoopAndCircleContact.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2LoopAndCircleContact.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2LoopAndCircleContact.Tpo -c -o libbox2d_a-b2LoopAndCircleContact.o `test -f 'Dynamics/Contacts/b2LoopAndCircleContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2LoopAndCircleContact.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2LoopAndCircleContact.Tpo $(DEPDIR)/libbox2d_a-b2LoopAndCircleContact.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2LoopAndCircleContact.cpp' object='libbox2d_a-b2LoopAndCircleContact.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2LoopAndCircleContact.o `test -f 'Dynamics/Contacts/b2LoopAndCircleContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2LoopAndCircleContact.cpp
-
-libbox2d_a-b2LoopAndCircleContact.obj: Dynamics/Contacts/b2LoopAndCircleContact.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2LoopAndCircleContact.obj -MD -MP -MF $(DEPDIR)/libbox2d_a-b2LoopAndCircleContact.Tpo -c -o libbox2d_a-b2LoopAndCircleContact.obj `if test -f 'Dynamics/Contacts/b2LoopAndCircleContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2LoopAndCircleContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2LoopAndCircleContact.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2LoopAndCircleContact.Tpo $(DEPDIR)/libbox2d_a-b2LoopAndCircleContact.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2LoopAndCircleContact.cpp' object='libbox2d_a-b2LoopAndCircleContact.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2LoopAndCircleContact.obj `if test -f 'Dynamics/Contacts/b2LoopAndCircleContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2LoopAndCircleContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2LoopAndCircleContact.cpp'; fi`
-
 libbox2d_a-b2ContactSolver.o: Dynamics/Contacts/b2ContactSolver.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2ContactSolver.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2ContactSolver.Tpo -c -o libbox2d_a-b2ContactSolver.o `test -f 'Dynamics/Contacts/b2ContactSolver.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2ContactSolver.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2ContactSolver.Tpo $(DEPDIR)/libbox2d_a-b2ContactSolver.Po
@@ -696,20 +684,6 @@ libbox2d_a-b2ContactSolver.obj: Dynamics/Contacts/b2ContactSolver.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2ContactSolver.cpp' object='libbox2d_a-b2ContactSolver.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2ContactSolver.obj `if test -f 'Dynamics/Contacts/b2ContactSolver.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2ContactSolver.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2ContactSolver.cpp'; fi`
-
-libbox2d_a-b2LoopAndPolygonContact.o: Dynamics/Contacts/b2LoopAndPolygonContact.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2LoopAndPolygonContact.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2LoopAndPolygonContact.Tpo -c -o libbox2d_a-b2LoopAndPolygonContact.o `test -f 'Dynamics/Contacts/b2LoopAndPolygonContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2LoopAndPolygonContact.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2LoopAndPolygonContact.Tpo $(DEPDIR)/libbox2d_a-b2LoopAndPolygonContact.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2LoopAndPolygonContact.cpp' object='libbox2d_a-b2LoopAndPolygonContact.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2LoopAndPolygonContact.o `test -f 'Dynamics/Contacts/b2LoopAndPolygonContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2LoopAndPolygonContact.cpp
-
-libbox2d_a-b2LoopAndPolygonContact.obj: Dynamics/Contacts/b2LoopAndPolygonContact.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2LoopAndPolygonContact.obj -MD -MP -MF $(DEPDIR)/libbox2d_a-b2LoopAndPolygonContact.Tpo -c -o libbox2d_a-b2LoopAndPolygonContact.obj `if test -f 'Dynamics/Contacts/b2LoopAndPolygonContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2LoopAndPolygonContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2LoopAndPolygonContact.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2LoopAndPolygonContact.Tpo $(DEPDIR)/libbox2d_a-b2LoopAndPolygonContact.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2LoopAndPolygonContact.cpp' object='libbox2d_a-b2LoopAndPolygonContact.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2LoopAndPolygonContact.obj `if test -f 'Dynamics/Contacts/b2LoopAndPolygonContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2LoopAndPolygonContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2LoopAndPolygonContact.cpp'; fi`
 
 libbox2d_a-b2PolygonContact.o: Dynamics/Contacts/b2PolygonContact.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2PolygonContact.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2PolygonContact.Tpo -c -o libbox2d_a-b2PolygonContact.o `test -f 'Dynamics/Contacts/b2PolygonContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2PolygonContact.cpp
@@ -753,6 +727,20 @@ libbox2d_a-b2Contact.obj: Dynamics/Contacts/b2Contact.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2Contact.obj `if test -f 'Dynamics/Contacts/b2Contact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2Contact.cpp'; fi`
 
+libbox2d_a-b2ChainAndPolygonContact.o: Dynamics/Contacts/b2ChainAndPolygonContact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2ChainAndPolygonContact.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2ChainAndPolygonContact.Tpo -c -o libbox2d_a-b2ChainAndPolygonContact.o `test -f 'Dynamics/Contacts/b2ChainAndPolygonContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2ChainAndPolygonContact.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2ChainAndPolygonContact.Tpo $(DEPDIR)/libbox2d_a-b2ChainAndPolygonContact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2ChainAndPolygonContact.cpp' object='libbox2d_a-b2ChainAndPolygonContact.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2ChainAndPolygonContact.o `test -f 'Dynamics/Contacts/b2ChainAndPolygonContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2ChainAndPolygonContact.cpp
+
+libbox2d_a-b2ChainAndPolygonContact.obj: Dynamics/Contacts/b2ChainAndPolygonContact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2ChainAndPolygonContact.obj -MD -MP -MF $(DEPDIR)/libbox2d_a-b2ChainAndPolygonContact.Tpo -c -o libbox2d_a-b2ChainAndPolygonContact.obj `if test -f 'Dynamics/Contacts/b2ChainAndPolygonContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2ChainAndPolygonContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2ChainAndPolygonContact.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2ChainAndPolygonContact.Tpo $(DEPDIR)/libbox2d_a-b2ChainAndPolygonContact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2ChainAndPolygonContact.cpp' object='libbox2d_a-b2ChainAndPolygonContact.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2ChainAndPolygonContact.obj `if test -f 'Dynamics/Contacts/b2ChainAndPolygonContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2ChainAndPolygonContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2ChainAndPolygonContact.cpp'; fi`
+
 libbox2d_a-b2PolygonAndCircleContact.o: Dynamics/Contacts/b2PolygonAndCircleContact.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2PolygonAndCircleContact.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2PolygonAndCircleContact.Tpo -c -o libbox2d_a-b2PolygonAndCircleContact.o `test -f 'Dynamics/Contacts/b2PolygonAndCircleContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2PolygonAndCircleContact.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2PolygonAndCircleContact.Tpo $(DEPDIR)/libbox2d_a-b2PolygonAndCircleContact.Po
@@ -766,6 +754,20 @@ libbox2d_a-b2PolygonAndCircleContact.obj: Dynamics/Contacts/b2PolygonAndCircleCo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2PolygonAndCircleContact.cpp' object='libbox2d_a-b2PolygonAndCircleContact.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2PolygonAndCircleContact.obj `if test -f 'Dynamics/Contacts/b2PolygonAndCircleContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2PolygonAndCircleContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2PolygonAndCircleContact.cpp'; fi`
+
+libbox2d_a-b2ChainAndCircleContact.o: Dynamics/Contacts/b2ChainAndCircleContact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2ChainAndCircleContact.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2ChainAndCircleContact.Tpo -c -o libbox2d_a-b2ChainAndCircleContact.o `test -f 'Dynamics/Contacts/b2ChainAndCircleContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2ChainAndCircleContact.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2ChainAndCircleContact.Tpo $(DEPDIR)/libbox2d_a-b2ChainAndCircleContact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2ChainAndCircleContact.cpp' object='libbox2d_a-b2ChainAndCircleContact.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2ChainAndCircleContact.o `test -f 'Dynamics/Contacts/b2ChainAndCircleContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2ChainAndCircleContact.cpp
+
+libbox2d_a-b2ChainAndCircleContact.obj: Dynamics/Contacts/b2ChainAndCircleContact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2ChainAndCircleContact.obj -MD -MP -MF $(DEPDIR)/libbox2d_a-b2ChainAndCircleContact.Tpo -c -o libbox2d_a-b2ChainAndCircleContact.obj `if test -f 'Dynamics/Contacts/b2ChainAndCircleContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2ChainAndCircleContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2ChainAndCircleContact.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libbox2d_a-b2ChainAndCircleContact.Tpo $(DEPDIR)/libbox2d_a-b2ChainAndCircleContact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Dynamics/Contacts/b2ChainAndCircleContact.cpp' object='libbox2d_a-b2ChainAndCircleContact.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -c -o libbox2d_a-b2ChainAndCircleContact.obj `if test -f 'Dynamics/Contacts/b2ChainAndCircleContact.cpp'; then $(CYGPATH_W) 'Dynamics/Contacts/b2ChainAndCircleContact.cpp'; else $(CYGPATH_W) '$(srcdir)/Dynamics/Contacts/b2ChainAndCircleContact.cpp'; fi`
 
 libbox2d_a-b2EdgeAndCircleContact.o: Dynamics/Contacts/b2EdgeAndCircleContact.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbox2d_a_CXXFLAGS) $(CXXFLAGS) -MT libbox2d_a-b2EdgeAndCircleContact.o -MD -MP -MF $(DEPDIR)/libbox2d_a-b2EdgeAndCircleContact.Tpo -c -o libbox2d_a-b2EdgeAndCircleContact.o `test -f 'Dynamics/Contacts/b2EdgeAndCircleContact.cpp' || echo '$(srcdir)/'`Dynamics/Contacts/b2EdgeAndCircleContact.cpp

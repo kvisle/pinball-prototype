@@ -70,6 +70,10 @@ public:
     int getFixturesByName(string name, vector<b2Fixture*>& fixtures);
     int getJointsByName(string name, vector<b2Joint*>& joints);
 
+    b2Body* getBodyByName(string name);
+    b2Fixture* getFixtureByName(string name);
+    b2Joint* getJointByName(string name);
+
 protected:
     //member helpers
     void vecToJson(const char* name, b2Vec2 vec, Json::Value& value, int index = -1);
