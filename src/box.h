@@ -15,14 +15,17 @@ class box {
 
         b2RevoluteJoint *leftFlipper;
         b2RevoluteJoint *rightFlipper;
+        b2PrismaticJoint *launcher;
 
         void flipOn(b2RevoluteJoint *f);
         void flipOff(b2RevoluteJoint *f);
+        void newball(float x, float y);
 
     public:
         b2World *world;
 
         void flip(int id, int on);
+        void launch(int on);
         box(const char *s);
         void step(void);
         ~box();

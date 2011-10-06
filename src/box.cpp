@@ -38,10 +38,12 @@ box::box(const char *s)
     world = json.readFromString(conf);
 
     world->SetDebugDraw(&dbd);
-    dbd.SetFlags(b2Draw::e_shapeBit);
-    timeStep = 1.0f/60.f;
+    dbd.SetFlags(b2Draw::e_shapeBit + b2Draw::e_jointBit);
+    timeStep = 1.0f/90.f;
     velocityIterations = 8;
     positionIterations = 10;
+
+    launcher = (b2PrismaticJoint*) json.getJointByName("launcher");
 
     vector<b2Joint*> f;
     json.getJointsByName("flip_left", f);
@@ -53,6 +55,10 @@ box::box(const char *s)
     rightFlipper = (b2RevoluteJoint*)f[0];
     rightFlipper->SetMotorSpeed(10);
 
+//            "x" : 1.949384808540344,
+//            "y" : -0.7213429212570190
+
+    newball(1.95f,-1.f);
 }
 
 void box::flipOff(b2RevoluteJoint *f)
@@ -80,6 +86,14 @@ void box::flip(int id, int on)
     }
 }
 
+void box::launch(int on)
+{
+    if ( !on )
+        launcher->SetMotorSpeed(-6);
+    else
+        launcher->SetMotorSpeed(1);
+}
+
 void box::step(void)
 {
     world->Step(timeStep, velocityIterations, positionIterations);
@@ -89,4 +103,24 @@ void box::step(void)
 box::~box()
 {
 
+}
+
+void box::newball(float x, float y)
+{
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.position.Set(x, y);
+    bodyDef.bullet = true;
+
+    b2Body* body = world->CreateBody(&bodyDef);
+
+    b2CircleShape circle;
+    circle.m_radius = 0.04f;
+
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &circle;
+    fixtureDef.density = 20.0f;
+    fixtureDef.friction = 0.f;
+    fixtureDef.restitution = 0.2f;
+    body->CreateFixture(&fixtureDef);
 }

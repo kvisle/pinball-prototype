@@ -25,6 +25,9 @@ void game::key(SDL_Event k)
     case SDLK_RSHIFT:
         b->flip(1, down);
         break;
+    case SDLK_SPACE:
+        b->launch(down);
+        break;
     default:
         break;
     }
