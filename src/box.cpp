@@ -55,8 +55,6 @@ box::box(const char *s)
     json.getJointsByName("flip_right", f);
     rightFlipper = (b2RevoluteJoint*)f[0];
     rightFlipper->SetMotorSpeed(10);
-
-    newball(1.95f,-1.f);
 }
 
 void box::flipOff(b2RevoluteJoint *f)

@@ -59,6 +59,11 @@ cl::PreSolve (b2Contact *contact, const b2Manifold *oldManifold)
     {
         printf("SLING! (%f)\n", approachVelocity);
     }
+    else if ( othername.compare("destroyball") == 0 )
+    {
+        b->balls.erase(std::find(b->balls.begin(), b->balls.end(), ball));
+        b->destroy.push_back(ball);
+    }
 }
 
 

@@ -9,6 +9,8 @@ class game
 {
     private:
         void input(void);
+        void destroymarked(void);
+
         int quit;
 
         void key(SDL_Event k);

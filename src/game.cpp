@@ -51,10 +51,27 @@ void game::input(void)
 }
 
 
+void game::destroymarked(void)
+{
+    while ( !b->destroy.empty() )
+    {
+        b->world->DestroyBody(b->destroy.back());
+        b->destroy.pop_back();
+    }
+}
+
+
 int game::update(void)
 {
     input();
     b->step();
+    destroymarked();   
+
+    if ( b->balls.size() == 0 )
+    {
+        b->newball(1.95f,-1.f);
+    }
+//    cout << "Balls on the field: " << b->balls.size() << endl;
 
     return !quit;
 }

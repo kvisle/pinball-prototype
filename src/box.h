@@ -22,14 +22,17 @@ class box {
 
         void flipOn(b2RevoluteJoint *f);
         void flipOff(b2RevoluteJoint *f);
-        void newball(float x, float y);
 
     public:
         b2World *world;
 
         b2dJson json;
 
+        void newball(float x, float y);
+
         vector<b2Body*> balls;
+        vector<b2Body*> destroy;
+
         void flip(int id, int on);
         void launch(int on);
         box(const char *s);
