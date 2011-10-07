@@ -8,6 +8,7 @@ using namespace std;
 
 #include "b2dJson.h"
 #include "box.h"
+#include "collide.h"
 
 static std::string
 readInput( const char *path )
@@ -31,11 +32,11 @@ readInput( const char *path )
 box::box(const char *s)
 {
     std::string conf = readInput(s);
-    b2dJson json(true);
-
-//    cout << "look, json:"  << conf << endl;
+//    b2dJson json(true);
+    cl *listener = new cl(this);
 
     world = json.readFromString(conf);
+    world->SetContactListener(listener);
 
     world->SetDebugDraw(&dbd);
     dbd.SetFlags(b2Draw::e_shapeBit + b2Draw::e_jointBit);
@@ -54,9 +55,6 @@ box::box(const char *s)
     json.getJointsByName("flip_right", f);
     rightFlipper = (b2RevoluteJoint*)f[0];
     rightFlipper->SetMotorSpeed(10);
-
-//            "x" : 1.949384808540344,
-//            "y" : -0.7213429212570190
 
     newball(1.95f,-1.f);
 }
@@ -123,4 +121,6 @@ void box::newball(float x, float y)
     fixtureDef.friction = 0.f;
     fixtureDef.restitution = 0.2f;
     body->CreateFixture(&fixtureDef);
+
+    balls.push_back(body);
 }

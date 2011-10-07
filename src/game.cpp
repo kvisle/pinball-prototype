@@ -16,7 +16,6 @@ game::~game(void)
 void game::key(SDL_Event k)
 {
     int down = ( k.key.state == SDL_PRESSED ) ? true : false;
-    int flipper;
     switch(k.key.keysym.sym)
     {
     case SDLK_LSHIFT:

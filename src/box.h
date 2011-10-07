@@ -1,9 +1,12 @@
 #ifndef __BOX_H__
 #define __BOX_H__
 
+using namespace std;
+
 #include <Box2D/Box2D.h>
 #include <json/json.h>
 
+#include "b2dJson.h"
 #include "Render.h"
 
 class box {
@@ -24,6 +27,9 @@ class box {
     public:
         b2World *world;
 
+        b2dJson json;
+
+        vector<b2Body*> balls;
         void flip(int id, int on);
         void launch(int on);
         box(const char *s);

@@ -47,7 +47,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_coder_OBJECTS = coder-main.$(OBJEXT) coder-video.$(OBJEXT) \
 	coder-timer.$(OBJEXT) coder-game.$(OBJEXT) coder-box.$(OBJEXT) \
-	coder-Render.$(OBJEXT) coder-b2dJson.$(OBJEXT)
+	coder-Render.$(OBJEXT) coder-b2dJson.$(OBJEXT) \
+	coder-collide.$(OBJEXT)
 coder_OBJECTS = $(am_coder_OBJECTS)
 am__DEPENDENCIES_1 =
 coder_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -170,7 +171,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -Wall 
-coder_SOURCES = main.cpp video.cpp timer.cpp game.cpp box.cpp Render.cpp b2dJson.cpp
+coder_SOURCES = main.cpp video.cpp timer.cpp game.cpp box.cpp Render.cpp b2dJson.cpp collide.cpp
 coder_LDADD = -L../lib/lib_json -ljsoncpp \
               -L../lib/Box2D -lbox2d \
 			 $(OPENAL_LIBS) \
@@ -269,6 +270,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-Render.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-b2dJson.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-box.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-collide.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-game.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coder-timer.Po@am__quote@
@@ -385,6 +387,20 @@ coder-b2dJson.obj: b2dJson.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='b2dJson.cpp' object='coder-b2dJson.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-b2dJson.obj `if test -f 'b2dJson.cpp'; then $(CYGPATH_W) 'b2dJson.cpp'; else $(CYGPATH_W) '$(srcdir)/b2dJson.cpp'; fi`
+
+coder-collide.o: collide.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-collide.o -MD -MP -MF $(DEPDIR)/coder-collide.Tpo -c -o coder-collide.o `test -f 'collide.cpp' || echo '$(srcdir)/'`collide.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-collide.Tpo $(DEPDIR)/coder-collide.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='collide.cpp' object='coder-collide.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-collide.o `test -f 'collide.cpp' || echo '$(srcdir)/'`collide.cpp
+
+coder-collide.obj: collide.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -MT coder-collide.obj -MD -MP -MF $(DEPDIR)/coder-collide.Tpo -c -o coder-collide.obj `if test -f 'collide.cpp'; then $(CYGPATH_W) 'collide.cpp'; else $(CYGPATH_W) '$(srcdir)/collide.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/coder-collide.Tpo $(DEPDIR)/coder-collide.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='collide.cpp' object='coder-collide.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(coder_CXXFLAGS) $(CXXFLAGS) -c -o coder-collide.obj `if test -f 'collide.cpp'; then $(CYGPATH_W) 'collide.cpp'; else $(CYGPATH_W) '$(srcdir)/collide.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

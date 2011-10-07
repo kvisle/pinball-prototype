@@ -74,15 +74,21 @@ public:
     b2Fixture* getFixtureByName(string name);
     b2Joint* getJointByName(string name);
 
+    string getBodyName(b2Body* body);
+    string getFixtureName(b2Fixture* fixture);
+    string getJointName(b2Joint* joint);
+
+
+
 protected:
     //member helpers
     void vecToJson(const char* name, b2Vec2 vec, Json::Value& value, int index = -1);
     void floatToJson(const char* name, float f, Json::Value& value);
     int lookupBodyIndex( b2Body* body );
     int lookupJointIndex( b2Joint* joint );
-    string getBodyName(b2Body* body);
+/*    string getBodyName(b2Body* body);
     string getFixtureName(b2Fixture* fixture);
-    string getJointName(b2Joint* joint);
+    string getJointName(b2Joint* joint);*/
 
     //static helpers
     static std::string floatToHex(float f);
