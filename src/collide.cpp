@@ -64,6 +64,55 @@ cl::PreSolve (b2Contact *contact, const b2Manifold *oldManifold)
         b->balls.erase(std::find(b->balls.begin(), b->balls.end(), ball));
         b->destroy.push_back(ball);
     }
+    else if ( othername.compare("onramp") == 0 )
+    {
+        b2Fixture *fix;
+        b2Filter fd;
+
+        puts("We're going up!");
+        if ( ball == ba )
+        {
+            fix = contact->GetFixtureA();
+        }
+        else
+        {
+            fix = contact->GetFixtureB();
+        }
+
+        fd = fix->GetFilterData();
+
+        fd.groupIndex = 0;
+        fd.maskBits = 0x2;
+        fd.categoryBits = 0x002;
+        fix->SetFilterData(fd);
+
+        contact->SetEnabled(false);
+    }
+    else if ( othername.compare("offramp") == 0 )
+    {
+        b2Fixture *fix;
+        b2Filter fd;
+
+        puts("We're going off!");
+        if ( ball == ba )
+        {
+            fix = contact->GetFixtureA();
+        }
+        else
+        {
+            fix = contact->GetFixtureB();
+        }
+
+        fd = fix->GetFilterData();
+
+        fd.groupIndex = 0;
+        fd.maskBits = 0x1;
+        fd.categoryBits = 0x001;
+        fix->SetFilterData(fd);
+
+        contact->SetEnabled(false);
+
+    }
 }
 
 
