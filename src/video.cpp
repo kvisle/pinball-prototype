@@ -11,7 +11,7 @@ video::video(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(  0, 2,
-            -3,   0,
+              0, 3,
             -10.0,  10.0);
     glMatrixMode(GL_MODELVIEW);
     glEnable(GL_BLEND);

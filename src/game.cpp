@@ -69,7 +69,7 @@ int game::update(void)
 
     if ( b->balls.size() == 0 )
     {
-        b->newball(1.95f,-1.f);
+        b->newball(1.95f,1.f);
     }
 //    cout << "Balls on the field: " << b->balls.size() << endl;
 

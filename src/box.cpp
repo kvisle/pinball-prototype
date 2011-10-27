@@ -119,7 +119,7 @@ void box::newball(float x, float y)
     fixtureDef.friction = 0.f;
     fixtureDef.restitution = 0.2f;
     fixtureDef.filter.groupIndex = 0;
-    fixtureDef.filter.maskBits = 0x1;
+    fixtureDef.filter.maskBits = 0x2;
     fixtureDef.filter.categoryBits = 0x001;
     body->CreateFixture(&fixtureDef);
 
